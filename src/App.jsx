@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import PostList from "./components/PostList/PostList";
+import { Button, TextField, useScrollTrigger } from "@mui/material";
+import styles from "./App.module.css";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [posts, setPosts] = useState([
+    { id: 1, description: "Javascript", title: "go learn JS!" },
+    { id: 2, description: "Typescript", title: "go learn TS!" },
+    { id: 3, description: "React", title: "go learn React!" },
+  ]);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const addNewPostHandler = (event) => {
+    event.preventDefault();
+    const newPost = {
+      id: Date.now(),
+      title,
+      description,
+    };
+    console.log(newPost);
+    setPosts([...posts, newPost]);
+    setDescription("");
+    setTitle("");
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <form className={styles.form}>
+        <TextField
+          className={styles.mInputs}
+          id="outlined-basic"
+          label="Название поста"
+          variant="outlined"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+        <TextField
+          className={styles.mInputs}
+          id="outlined-basic"
+          label="Описание поста"
+          variant="outlined"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+        <Button variant="contained" onClick={addNewPostHandler}>
+          Добавить
+        </Button>
+      </form>
+      <PostList title="Список постов про JS" posts={posts} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
