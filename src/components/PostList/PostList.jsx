@@ -6,7 +6,12 @@ const PostList = ({ title, posts, onRemove }) => {
     <>
       <h1 className={styles["title-list"]}>{title}</h1>
       {posts.map((posts, index) => (
-        <PostItem number={index + 1} posts={posts} onRemove={onRemove} />
+        <PostItem
+          key={index}
+          number={index + 1}
+          posts={posts}
+          onRemove={onRemove}
+        />
       ))}
     </>
   );
