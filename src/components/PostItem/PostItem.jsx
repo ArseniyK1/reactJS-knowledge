@@ -2,6 +2,10 @@ import { Button } from "@mui/material";
 import styles from "./PostItem.module.css";
 
 const PostItem = (props) => {
+  const remove = () => {
+    props.onRemove(props.posts);
+  };
+
   return (
     <>
       <div className={styles.post}>
@@ -13,13 +17,7 @@ const PostItem = (props) => {
             {props.posts.description ? props.posts.description : "description"}
           </div>
         </div>
-        <Button
-          className={styles.btn}
-          variant="contained"
-          onClick={() => {
-            props.onRemove(props.post);
-          }}
-        >
+        <Button className={styles.btn} variant="contained" onClick={remove}>
           Удалить
         </Button>
       </div>
