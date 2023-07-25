@@ -10,32 +10,22 @@ function App() {
     { id: 3, description: "React", title: "go learn React!" },
   ]);
 
-  const [post, setPost] = useState({ title: "", description: "" });
-
-  const addNewPostHandler = (event) => {
-    event.preventDefault();
-    setPosts([...posts, { ...post, id: Date.now() }]); // добавление нового поста
-    setPost({ title: "", description: "" }); // двустороннее связывание (очищение инпутов)
+  const onCreateHandler = (newPost) => {
+    setPosts([...posts, newPost]);
   };
 
-  const changeTitleHandler = (event) => {
-    setPost({ ...post, title: event.target.value });
-  };
-
-  const changeDescriptionHandler = (event) => {
-    setPost({ ...post, description: event.target.value });
+  const removePostHandler = (post) => {
+    setPosts(posts.filter((currentPost) => currentPost.id !== post.id));
   };
 
   return (
     <>
-      <PostForm
-        title={post.title}
-        changeTitleHandler={changeTitleHandler}
-        description={post.description}
-        changeDescriptionHandler={changeDescriptionHandler}
-        addPost={addNewPostHandler}
+      <PostForm create={onCreateHandler} />
+      <PostList
+        title="Список постов про JS"
+        posts={posts}
+        onRemove={removePostHandler}
       />
-      <PostList title="Список постов про JS" posts={posts} />
     </>
   );
 }

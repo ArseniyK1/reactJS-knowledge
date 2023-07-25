@@ -13,7 +13,13 @@ const PostItem = (props) => {
             {props.posts.description ? props.posts.description : "description"}
           </div>
         </div>
-        <Button className={styles.btn} variant="contained">
+        <Button
+          className={styles.btn}
+          variant="contained"
+          onClick={() => {
+            props.onRemove(props.post);
+          }}
+        >
           Удалить
         </Button>
       </div>
