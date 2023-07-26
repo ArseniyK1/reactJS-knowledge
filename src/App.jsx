@@ -4,9 +4,10 @@ import styles from "./App.module.css";
 
 import { faker } from "@faker-js/faker";
 
-import { Button, TextField } from "@mui/material";
 import { useMemo, useState } from "react";
 import PostFilter from "./components/PostFilter/PostFilter";
+import MyModal from "./UI/MyModal/MyModal";
+import MyButton from "./UI/button/MyButton";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -31,6 +32,7 @@ function App() {
   // const [searchQuery, setSearchQuery] = useState(""); // состояние для сортировки по поиску
 
   const [filter, setFilter] = useState({ sort: "", query: "" });
+  const [visible, setVisible] = useState(false);
 
   const sortedPosts = useMemo(() => {
     console.log('Func "SortedPosts" succeeded');
@@ -55,6 +57,7 @@ function App() {
 
   const onCreateHandler = (newPost) => {
     setPosts([...posts, newPost]);
+    setVisible(false);
   };
 
   const removePostHandler = (post) => {
@@ -63,18 +66,20 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <PostForm create={onCreateHandler} />
+      <header>
+        <MyButton onClick={() => setVisible(true)}>Создать пост</MyButton>
+      </header>
+      <MyModal visible={visible} setVisible={setVisible}>
+        <PostForm create={onCreateHandler} />
+      </MyModal>
+
       <hr className={styles.razdelitelnaya} />
       <PostFilter filter={filter} setFilter={setFilter} />
-      {sortedAndSearchPosts.length !== 0 ? (
-        <PostList
-          title="Список постов"
-          posts={sortedAndSearchPosts}
-          onRemove={removePostHandler}
-        />
-      ) : (
-        <div className={styles["post-not-found"]}>Постов не найдено!</div>
-      )}
+      <PostList
+        title="Список постов"
+        posts={sortedAndSearchPosts}
+        onRemove={removePostHandler}
+      />
     </div>
   );
 }

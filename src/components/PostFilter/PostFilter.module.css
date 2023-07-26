@@ -1,0 +1,15 @@
+.query {
+  border: none;
+  outline: none;
+  width: 15%;
+  height: 3rem;
+  margin-left: 5%;
+  border: 1.5px solid #7b91a7;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 1rem;
+}
+.query:active:focus {
+  outline: none;
+  border: 1.5px solid #1976d2;
+}

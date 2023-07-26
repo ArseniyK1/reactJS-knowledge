@@ -5,11 +5,10 @@ import MySelect from "../../UI/select/MySelect";
 const PostFilter = ({ filter, setFilter }) => {
   return (
     <>
-      <TextField
-        className={styles.mInputs}
-        id="outlined-basic"
+      <input
+        placeholder="Поиск..."
+        className={styles.query}
         label="Поиск..."
-        variant="outlined"
         value={filter.query}
         onChange={(event) =>
           setFilter({ ...filter, query: event.target.value })
@@ -18,7 +17,6 @@ const PostFilter = ({ filter, setFilter }) => {
       <br />
       <br />
       <MySelect
-        className={styles.sort}
         value={filter.sort}
         onChange={(selectedSort) =>
           setFilter({ ...filter, sort: selectedSort })

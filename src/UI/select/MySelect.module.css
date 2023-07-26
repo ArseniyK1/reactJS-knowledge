@@ -1,3 +1,13 @@
 .filter {
   margin-left: 5%;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1.5px solid #7b91a7;
+  width: 15%;
+  height: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter + option {
+  height: 40px;
 }

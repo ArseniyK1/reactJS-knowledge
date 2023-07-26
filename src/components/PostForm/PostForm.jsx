@@ -1,6 +1,8 @@
 import styles from "./PostForm.module.css";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import MyButton from "../../UI/button/MyButton";
+import MyInput from "../../UI/input/MyInput";
 
 const PostForm = ({ create }) => {
   const [post, setPost] = useState({ title: "", description: "" });
@@ -17,27 +19,21 @@ const PostForm = ({ create }) => {
 
   return (
     <form className={styles.form} onSubmit={addNewPostHandler}>
-      <TextField
-        className={styles.mInputs}
-        id="outlined-basic"
-        label="Название поста"
-        variant="outlined"
+      <MyInput
+        placeholder="Название поста"
         value={post.title}
         onChange={(event) => setPost({ ...post, title: event.target.value })}
       />
-      <TextField
-        className={styles.mInputs}
-        id="outlined-basic"
-        label="Описание поста"
-        variant="outlined"
+      <MyInput
+        placeholder="Описание поста"
         value={post.description}
         onChange={(event) =>
           setPost({ ...post, description: event.target.value })
         }
       />
-      <Button type="submit" variant="contained">
+      <MyButton type="submit" variant="contained">
         Добавить
-      </Button>
+      </MyButton>
     </form>
   );
 };

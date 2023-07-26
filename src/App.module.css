@@ -1,9 +1,10 @@
 * {
   box-sizing: border-box;
+  font-family: Inter !important;
 }
 
 .container {
-  max-width: 90%;
+  max-width: 90% !important;
   margin: 0 auto;
 }
 
@@ -21,7 +22,8 @@
   margin: 0 0 0 5% !important;
 }
 
-.post-not-found {
-  text-align: center;
-  font-size: 40px;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
