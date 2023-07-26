@@ -11,11 +11,9 @@ const PostItem = (props) => {
       <div className={styles.post}>
         <div className={styles.description}>
           <div className={styles.title}>
-            {props.number}. {props.posts.title ? props.posts.title : "title"}
+            {props.number}. {props.posts.title}
           </div>
-          <div>
-            {props.posts.description ? props.posts.description : "description"}
-          </div>
+          <div>{props.posts.description}</div>
         </div>
         <Button className={styles.btn} variant="contained" onClick={remove}>
           Удалить
