@@ -1,6 +1,6 @@
 import styles from "./PostFilter.module.css";
 import { Button, TextField } from "@mui/material";
-import MySelect from "../../UI/select/MySelect ";
+import MySelect from "../../UI/select/MySelect";
 
 const PostFilter = ({ filter, setFilter }) => {
   return (
