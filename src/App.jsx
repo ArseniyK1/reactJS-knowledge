@@ -1,7 +1,7 @@
 import PostList from "./components/PostList/PostList";
 import PostForm from "./components/PostForm/PostForm";
 import "./App.css";
-
+import { CircularProgress, LinearProgress } from "@mui/material";
 import { faker } from "@faker-js/faker";
 
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import MyButton from "./UI/button/MyButton";
 import { usePosts } from "./hooks/usePosts";
 
 import PostService from "./API/PostService";
+import Loader from "./UI/Loader/Loader";
 
 function App() {
   const [posts, setPosts] = useState([]); // изначальные посты записаны в состоянии, чтобы их было легко обновлять
@@ -26,7 +27,6 @@ function App() {
 
   const fetchPost = async () => {
     setIsPostsLoading(true);
-    setTimeout(() => {}, 2000);
     setTimeout(async () => {
       const posts = await PostService.getAll();
       setPosts(posts);
@@ -55,7 +55,9 @@ function App() {
       <hr className="razdelitelnaya" />
       <PostFilter filter={filter} setFilter={setFilter} />
       {isPostsLoading ? (
-        <h2 className="loading">Идет загрузка постов....</h2>
+        <div className="loader">
+          <Loader />
+        </div>
       ) : (
         <PostList
           title="Список постов"

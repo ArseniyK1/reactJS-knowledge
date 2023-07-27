@@ -29,7 +29,8 @@ header {
 }
 
 .loading {
-  text-align: center;
+  margin: 0 auto !important;
+  max-width: 90% !important;
 }
 
 .post-enter {
@@ -45,4 +46,9 @@ header {
 .post-exit-active {
   transform: translateX(-350px);
   transition: all 500ms ease-in;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
 }
