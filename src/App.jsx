@@ -9,13 +9,15 @@ import PostFilter from "./components/PostFilter/PostFilter";
 import MyModal from "./UI/MyModal/MyModal";
 import MyButton from "./UI/button/MyButton";
 import { usePosts } from "./hooks/usePosts";
-import axios from "axios";
+
+import PostService from "./API/PostService";
 
 function App() {
   const [posts, setPosts] = useState([]); // изначальные посты записаны в состоянии, чтобы их было легко обновлять
 
   const [filter, setFilter] = useState({ sort: "", query: "" });
   const [visible, setVisible] = useState(false);
+  const [isPostsLoading, setIsPostsLoading] = useState(false);
   const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query);
 
   useEffect(() => {
@@ -23,10 +25,13 @@ function App() {
   }, []);
 
   const fetchPost = async () => {
-    const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    setPosts(response.data);
+    setIsPostsLoading(true);
+    setTimeout(() => {}, 2000);
+    setTimeout(async () => {
+      const posts = await PostService.getAll();
+      setPosts(posts);
+      setIsPostsLoading(false);
+    }, 1000);
   };
 
   const onCreateHandler = (newPost) => {
@@ -49,11 +54,15 @@ function App() {
 
       <hr className="razdelitelnaya" />
       <PostFilter filter={filter} setFilter={setFilter} />
-      <PostList
-        title="Список постов"
-        posts={sortedAndSearchPosts}
-        onRemove={removePostHandler}
-      />
+      {isPostsLoading ? (
+        <h2 className="loading">Идет загрузка постов....</h2>
+      ) : (
+        <PostList
+          title="Список постов"
+          posts={sortedAndSearchPosts}
+          onRemove={removePostHandler}
+        />
+      )}
     </div>
   );
 }
