@@ -12,27 +12,22 @@ import { usePosts } from "./hooks/usePosts";
 
 import PostService from "./API/PostService";
 import Loader from "./UI/Loader/Loader";
+import { useFetching } from "./hooks/useFetching";
 
 function App() {
   const [posts, setPosts] = useState([]); // изначальные посты записаны в состоянии, чтобы их было легко обновлять
 
   const [filter, setFilter] = useState({ sort: "", query: "" });
   const [visible, setVisible] = useState(false);
-  const [isPostsLoading, setIsPostsLoading] = useState(false);
+  const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
+    const posts = await PostService.getAll();
+    setPosts(posts);
+  });
   const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query);
 
   useEffect(() => {
-    fetchPost();
+    fetchPosts();
   }, []);
-
-  const fetchPost = async () => {
-    setIsPostsLoading(true);
-    setTimeout(async () => {
-      const posts = await PostService.getAll();
-      setPosts(posts);
-      setIsPostsLoading(false);
-    }, 1000);
-  };
 
   const onCreateHandler = (newPost) => {
     setPosts([...posts, newPost]);
@@ -54,6 +49,7 @@ function App() {
 
       <hr className="razdelitelnaya" />
       <PostFilter filter={filter} setFilter={setFilter} />
+      {postError ? <h1>Произошла ошибка!</h1> : ""}
       {isPostsLoading ? (
         <div className="loader">
           <Loader />
