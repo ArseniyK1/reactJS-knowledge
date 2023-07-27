@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  font-family: Inter;
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.razdelitelnaya {
+  width: 90%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.mInputs {
+  margin: 0 0 0 5%;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-enter {
+  opacity: 0;
+}
+.post-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.post-exit {
+  opacity: 1;
+}
+.post-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

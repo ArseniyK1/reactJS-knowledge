@@ -1,6 +1,6 @@
 import PostList from "./components/PostList/PostList";
 import PostForm from "./components/PostForm/PostForm";
-import styles from "./App.module.css";
+import "./App.css";
 
 import { faker } from "@faker-js/faker";
 
@@ -65,7 +65,7 @@ function App() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <header>
         <MyButton onClick={() => setVisible(true)}>Создать пост</MyButton>
       </header>
@@ -73,7 +73,7 @@ function App() {
         <PostForm create={onCreateHandler} />
       </MyModal>
 
-      <hr className={styles.razdelitelnaya} />
+      <hr className="razdelitelnaya" />
       <PostFilter filter={filter} setFilter={setFilter} />
       <PostList
         title="Список постов"
