@@ -5,7 +5,7 @@ import MyButton from "../../UI/button/MyButton";
 import MyInput from "../../UI/input/MyInput";
 
 const PostForm = ({ create }) => {
-  const [post, setPost] = useState({ title: "", description: "" });
+  const [post, setPost] = useState({ title: "", body: "" });
 
   const addNewPostHandler = (event) => {
     event.preventDefault();
@@ -14,7 +14,7 @@ const PostForm = ({ create }) => {
       id: Date.now(),
     };
     create(newPost);
-    setPost({ title: "", description: "" }); // двустороннее связывание (очищение инпутов)
+    setPost({ title: "", body: "" }); // двустороннее связывание (очищение инпутов)
   };
 
   return (
@@ -26,10 +26,8 @@ const PostForm = ({ create }) => {
       />
       <MyInput
         placeholder="Описание поста"
-        value={post.description}
-        onChange={(event) =>
-          setPost({ ...post, description: event.target.value })
-        }
+        value={post.body}
+        onChange={(event) => setPost({ ...post, body: event.target.value })}
       />
       <MyButton type="submit" variant="contained">
         Добавить

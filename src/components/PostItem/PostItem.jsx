@@ -10,11 +10,11 @@ const PostItem = (props) => {
   return (
     <>
       <div className={styles.post}>
-        <div className={styles.description}>
+        <div className={styles.body}>
           <div className={styles.title}>
             {props.number}. {props.posts.title}
           </div>
-          <div>{props.posts.description}</div>
+          <div>{props.posts.body}</div>
         </div>
         <MyButton onClick={remove}>Удалить</MyButton>
       </div>
