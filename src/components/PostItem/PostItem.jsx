@@ -12,7 +12,7 @@ const PostItem = (props) => {
       <div className={styles.post}>
         <div className={styles.body}>
           <div className={styles.title}>
-            {props.number}. {props.posts.title}
+            {props.posts.id}. {props.posts.title}
           </div>
           <div>{props.posts.body}</div>
         </div>

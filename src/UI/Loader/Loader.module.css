@@ -3,7 +3,7 @@
   height: 50px;
   border-radius: 50%;
   border: 3px dashed black;
-  margin-top: 50px;
+  margin: 50px 0 50px 0;
   animation: rotate 1s infinite linear;
 }
 
