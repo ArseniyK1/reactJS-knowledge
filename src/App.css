@@ -52,3 +52,9 @@ header {
   display: flex;
   justify-content: center;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

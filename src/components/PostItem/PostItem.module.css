@@ -8,11 +8,20 @@
   margin: 0 auto;
   margin-bottom: 10px;
   width: 90%;
-  border: 2.5px solid teal;
+  border: 2.5px solid black;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+.post:hover {
+  background-color: rgb(74, 73, 73);
+  color: white;
+  transition: 0.7s;
 }
 
 .description {
